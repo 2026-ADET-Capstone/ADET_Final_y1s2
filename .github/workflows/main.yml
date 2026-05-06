@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           REPO: ${{ github.repository }}
-        run: node scripts/analytics.js
+        run: node .github/workflows/analytics.js
 
       - name: Commit snapshot reports
         run: |
