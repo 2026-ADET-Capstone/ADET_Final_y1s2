@@ -17,13 +17,13 @@ export default function Input({
   return (
     <div className={fullWidth ? 'w-full' : 'inline-block'}>
       {label && (
-        <label className="block text-sm font-semibold text-amber-400 mb-2">
+        <label className="block text-sm font-semibold text-gray-900 mb-2">
           {label}
         </label>
       )}
       <input
-        className={`w-full px-4 py-2 bg-gray-800 border rounded text-white placeholder-gray-500 focus:outline-none transition-colors ${
-          error ? 'border-red-500 focus:border-red-400' : 'border-gray-700 focus:border-amber-500'
+        className={`w-full px-4 py-2 bg-white border rounded text-gray-900 placeholder-gray-400 focus:outline-none transition-colors ${
+          error ? 'border-red-500 focus:border-red-400' : 'border-gray-300 focus:border-blue-900'
         }`}
         {...props}
       />
