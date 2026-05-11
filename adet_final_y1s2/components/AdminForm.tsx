@@ -57,12 +57,12 @@ export default function AdminForm({ movie, onSuccess }: AdminFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-800 p-6 rounded-lg border border-gray-700 max-w-2xl">
-      <h2 className="text-2xl font-bold text-amber-400 mb-6">
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg border border-gray-300 max-w-2xl">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
         {movie ? 'Edit Movie' : 'Add New Movie'}
       </h2>
 
-      {error && <div className="bg-red-900 text-red-100 p-3 rounded mb-4">{error}</div>}
+      {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">{error}</div>}
 
       <div className="space-y-4">
         <Input label="Title" name="title" value={formData.title} onChange={handleChange} required />
@@ -73,13 +73,13 @@ export default function AdminForm({ movie, onSuccess }: AdminFormProps) {
         <Input label="Image URL" name="image" value={formData.image} onChange={handleChange} />
         
         <div>
-          <label className="block text-sm font-semibold text-amber-400 mb-2">Description</label>
+          <label className="block text-sm font-semibold text-gray-900 mb-2">Description</label>
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
             rows={5}
-            className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+            className="w-full px-4 py-2 bg-white border border-gray-300 rounded text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-900"
             required
           />
         </div>
