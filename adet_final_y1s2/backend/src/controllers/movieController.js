@@ -1,7 +1,6 @@
 const Movie = require('../models/Movie');
 
 class MovieController {
-  // Get all movies
   static async getAllMovies(req, res) {
     try {
       const movies = await Movie.getAll();
@@ -11,7 +10,6 @@ class MovieController {
     }
   }
 
-  // Get movie by ID
   static async getMovieById(req, res) {
     try {
       const { id } = req.params;
@@ -27,12 +25,10 @@ class MovieController {
     }
   }
 
-  // Create movie
   static async createMovie(req, res) {
     try {
       const { title, genre, rating, runtime, releaseDate, description, image } = req.body;
 
-      // Validation
       if (!title || !genre || !rating || !runtime || !releaseDate || !description) {
         return res.status(400).json({ error: 'Missing required fields' });
       }
@@ -54,13 +50,11 @@ class MovieController {
     }
   }
 
-  // Update movie
   static async updateMovie(req, res) {
     try {
       const { id } = req.params;
       const { title, genre, rating, runtime, releaseDate, description, image } = req.body;
 
-      // Check if movie exists
       const exists = await Movie.getById(id);
       if (!exists) {
         return res.status(404).json({ error: 'Movie not found' });
@@ -83,12 +77,10 @@ class MovieController {
     }
   }
 
-  // Delete movie
   static async deleteMovie(req, res) {
     try {
       const { id } = req.params;
 
-      // Check if movie exists
       const exists = await Movie.getById(id);
       if (!exists) {
         return res.status(404).json({ error: 'Movie not found' });

@@ -3,11 +3,10 @@ const cors = require('cors');
 require('dotenv').config();
 
 // Import database connection
-require('./config/database');
+require('./src/config/database');
 
 // Import routes
-const movieRoutes = require('./routes/movies');
-
+const movieRoutes = require('./src/routes/movies');
 // Create Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,7 +17,7 @@ app.use(express.json());
 
 // Health check route
 app.get('/', (req, res) => {
-  res.json({ message: 'API running' });
+  res.json({ message: '🚀 API running' });
 });
 
 // Routes

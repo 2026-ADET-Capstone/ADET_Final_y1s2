@@ -1,7 +1,6 @@
 const pool = require('../config/database');
 
 class Movie {
-  // Get all movies
   static async getAll() {
     try {
       const connection = await pool.getConnection();
@@ -14,7 +13,6 @@ class Movie {
     }
   }
 
-  // Get movie by ID
   static async getById(id) {
     try {
       const connection = await pool.getConnection();
@@ -27,7 +25,6 @@ class Movie {
     }
   }
 
-  // Create movie
   static async create(data) {
     try {
       const connection = await pool.getConnection();
@@ -46,7 +43,6 @@ class Movie {
     }
   }
 
-  // Update movie
   static async update(id, data) {
     try {
       const connection = await pool.getConnection();
@@ -65,7 +61,6 @@ class Movie {
     }
   }
 
-  // Delete movie
   static async delete(id) {
     try {
       const connection = await pool.getConnection();
