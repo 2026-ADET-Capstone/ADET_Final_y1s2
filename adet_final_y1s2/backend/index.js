@@ -32,3 +32,7 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`🎬 Moonlight Motion API running on http://localhost:${PORT}`);
 });
+
+// Admin authentication route
+const authRoutes = require('./src/routes/auth');
+app.use('/auth', authRoutes);
