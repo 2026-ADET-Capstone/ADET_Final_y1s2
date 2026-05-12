@@ -1,0 +1,65 @@
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:9.6
+    container_name: moonlight_motion_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: moonlight_motion
+      MYSQL_USER: moonlight_user
+      MYSQL_PASSWORD: moonlight_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - moonlight_network
+
+  # Express Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: moonlight_motion_backend
+    environment:
+      PORT: 3001
+      DB_HOST: mysql
+      DB_USER: moonlight_user
+      DB_PASSWORD: moonlight_password
+      DB_NAME: moonlight_motion
+    ports:
+      - "3001:3001"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - moonlight_network
+    command: npm run dev
+
+  # Next.js Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: moonlight_motion_frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - moonlight_network
+    command: npm run dev
+
+volumes:
+  mysql_data:
+
+networks:
+  moonlight_network:
+    driver: bridge
