@@ -7,14 +7,11 @@
 
 import SwiftUI
 
-struct ADET_Final_iOSApp: View {
-    var body: some View {
-        Text("Splash")
-            .font(.largeTitle)
-            .padding()
+@main
+struct ADET_Final_iOSApp: App {
+    var body: some Scene {
+        WindowGroup {
+            SplashView()
+        }
     }
-}
-
-#Preview {
-    SplashView()
 }

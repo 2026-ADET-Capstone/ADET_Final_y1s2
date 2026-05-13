@@ -13,6 +13,7 @@ struct MovieDetailView: View {
                         .scaledToFit()
                         .frame(width: 56, height: 56)
                     Spacer()
+                    // Back button: calls dismiss() to close this view
                     Button(action: { dismiss() }) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 20, weight: .light))
@@ -21,10 +22,12 @@ struct MovieDetailView: View {
                 }
                 .padding(.horizontal, 20)
 
+                // Load the movie poster from the network; show a placeholder while loading or on failure
                 AsyncImage(url: movie.image?.absoluteImageURL()) { phase in
                     switch phase {
                     case .success(let img):
                         img.resizable().scaledToFit()
+                    // Placeholder shown while loading or if the image fails to load
                     default:
                         Rectangle().fill(Color(white: 0.85)).frame(height: 320)
                     }
@@ -39,6 +42,7 @@ struct MovieDetailView: View {
                     .font(.footnote)
                     .foregroundColor(.gray)
 
+          
                 HStack(spacing: 12) {
                     Pill(text: movie.rating)
                     Pill(text: movie.runtime)
@@ -66,6 +70,7 @@ struct MovieDetailView: View {
             .padding(.top, 8)
         }
         .background(Color.white)
+        // Hide the default navigation bar 
         .navigationBarHidden(true)
     }
 }

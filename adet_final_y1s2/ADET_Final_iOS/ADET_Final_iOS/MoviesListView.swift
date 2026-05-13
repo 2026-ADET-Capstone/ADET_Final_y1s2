@@ -12,6 +12,7 @@ struct MoviesListView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .topLeading) {
+                // Switch between the movies list and the concessions screen based on destination
                 Group {
                     if destination == .concessions {
                         ConcessionsView(menuOpen: $menuOpen, destination: $destination)
@@ -20,30 +21,50 @@ struct MoviesListView: View {
                     }
                 }
 
+              
                 if menuOpen {
                     MenuView(isOpen: $menuOpen, destination: $destination)
                         .transition(.move(edge: .leading))
                 }
             }
+         
             .navigationBarHidden(true)
         }
-        .task { await load() }
+        .task { await load() } // Load movies when the view appears
+    }
+
+    // Fetch the list of movies asynchronously and update view state
+    private func load() async {
+        loading = true
+        error = nil
+        // Try to load from the API; on failure, set a user-friendly error message
+        do {
+            movies = try await APIClient.shared.fetchMovies()
+        } catch {
+            self.error = "Failed to load movies. Make sure the backend is running."
+        }
+        loading = false
     }
 
     private var moviesContent: some View {
         VStack(spacing: 0) {
             HeaderBar(menuOpen: $menuOpen)
 
+            // Loading state
             if loading {
                 Spacer()
                 ProgressView("Loading movies...")
                 Spacer()
-            } else if let error {
+            }
+            // Error state with retry
+            else if let error {
                 Spacer()
                 Text(error).foregroundColor(.red).padding()
                 Button("Retry") { Task { await load() } }
                 Spacer()
-            } else {
+            }
+            // Loaded state: grid of movie cards
+            else {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(movies) { movie in
@@ -58,17 +79,6 @@ struct MoviesListView: View {
             }
         }
         .background(Color.white)
-    }
-
-    private func load() async {
-        loading = true
-        error = nil
-        do {
-            movies = try await APIClient.shared.fetchMovies()
-        } catch {
-            self.error = "Failed to load movies. Make sure the backend is running."
-        }
-        loading = false
     }
 }
 
@@ -99,6 +109,7 @@ struct MovieCardView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            // Load poster image; show gray placeholder while loading or on failure
             AsyncImage(url: movie.image?.absoluteImageURL()) { phase in
                 switch phase {
                 case .success(let img):
