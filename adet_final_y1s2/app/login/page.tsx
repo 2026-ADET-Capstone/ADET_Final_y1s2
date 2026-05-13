@@ -29,24 +29,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex bg-white">
       {/* LEFT — Drive-in hero */}
-      <div className="hidden lg:flex lg:w-2/3 relative items-center justify-center overflow-hidden bg-gradient-to-b from-[#0b1530] via-[#1a2a4a] to-[#0b1530]">
-        {/* Starfield effect */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
-        </div>
-
-        {/* Replace this block with <img src="/login-hero.jpg" ... /> if you have a photo */}
-        <div className="relative z-10 text-center px-12">
-          <div className="w-36 h-36 mx-auto mb-10 rounded-full bg-white/5 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center">
-            <span className="text-white text-5xl font-light tracking-[0.2em]">MM</span>
-          </div>
-          <h1 className="text-white text-6xl font-light tracking-[0.35em] mb-3">
-            MOONLIGHT
-          </h1>
-          <p className="text-white/70 text-lg tracking-[0.45em]">
-            DRIVE-IN THEATRE
-          </p>
-        </div>
+      <div className="hidden lg:block lg:w-2/3 relative overflow-hidden bg-black">
+        <img
+          src="/assets/MM_Login_sidepicture.png"
+          alt="Moonlight Drive-In Theatre"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
 
       {/* RIGHT — Login card */}
