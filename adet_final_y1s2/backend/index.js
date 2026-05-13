@@ -34,5 +34,5 @@ app.listen(PORT, () => {
 });
 
 // Admin authentication route
-const authRoutes = require('./src/routes/auth');
+const authRoutes = require('./auth');
 app.use('/auth', authRoutes);
