@@ -4,7 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { login } from '@/lib/auth';
-import Logo from '@/components/logo';
+import Logo from '@/components/Logo';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -40,11 +40,11 @@ export default function LoginPage() {
 
       {/* RIGHT — Login card */}
       <div className="w-full lg:w-1/3 flex flex-col items-center justify-center px-8 py-12 relative bg-white">
-        <div className="absolute top-6 right-6">
-  <Logo size={48} href="/" />
-        </div>
-
         <div className="w-full max-w-sm">
+          <div className="flex justify-center mb-8">
+            <Logo size={140} href="/" />
+          </div>
+
           <h2 className="text-2xl font-light text-[#1a2a4a] mb-10 text-center tracking-wide">
             Please Login
           </h2>

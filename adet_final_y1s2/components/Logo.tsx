@@ -9,35 +9,50 @@ interface LogoProps {
   className?: string;
 }
 
-export default function Logo({ size = 48, href = '/', className = '' }: LogoProps) {
+export default function Logo({ size = 78, href = '/', className = '' }: LogoProps) {
   const [failed, setFailed] = useState(false);
 
-  const content = failed ? (
+  const fallback = (
     <div
-      className={`rounded-full bg-[#1a2a4a] flex items-center justify-center ${className}`}
-      style={{ width: size, height: size }}
+      className={className}
+      style={{
+        width: size,
+        height: size,
+        backgroundColor: '#1a2a4a',
+        borderRadius: '9999px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
       <span
-        className="text-white font-light tracking-widest"
-        style={{ fontSize: size * 0.28 }}
+        style={{
+          color: 'white',
+          fontSize: size * 0.28,
+          fontWeight: 300,
+          letterSpacing: '0.15em',
+        }}
       >
         MM
       </span>
     </div>
-  ) : (
+  );
+
+  const content = failed ? fallback : (
     <img
-      src="/assets/MM_Logo.png"
+      src="/assets/MM_logo.png"
       alt="Moonlight Motion"
       width={size}
       height={size}
-      className={`rounded-full object-cover ${className}`}
+      style={{ borderRadius: '9999px', objectFit: 'cover' }}
+      className={className}
       onError={() => setFailed(true)}
     />
   );
 
   if (!href) return content;
   return (
-    <Link href={href} aria-label="Moonlight Motion home" className="inline-block">
+    <Link href={href} aria-label="Moonlight Motion home" style={{ display: 'inline-block' }}>
       {content}
     </Link>
   );

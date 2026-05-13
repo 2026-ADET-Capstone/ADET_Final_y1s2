@@ -8,6 +8,8 @@ require('./src/config/database');
 // Import routes
 const movieRoutes = require('./src/routes/movies');
 const authRoutes = require('./auth');
+const staffRoutes = require('./src/routes/staff');
+const concessionsRoutes = require('./src/routes/concessions');
 
 // Create Express app
 const app = express();
@@ -25,6 +27,8 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/movies', movieRoutes);
 app.use('/auth', authRoutes);
+app.use('/staff', staffRoutes);
+app.use('/concessions', concessionsRoutes);
 
 // 404 handler (must come AFTER all routes)
 app.use((req, res) => {

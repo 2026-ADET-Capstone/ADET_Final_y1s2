@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { getAuth, logout } from '@/lib/auth';
 import AdminForm from '@/components/AdminForm';
 import Button from '@/components/Button';
+import Logo from '@/components/Logo';
 
 export default function AdminPage() {
   const router = useRouter();

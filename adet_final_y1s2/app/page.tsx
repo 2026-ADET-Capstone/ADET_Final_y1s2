@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Movie, movieAPI } from '@/lib/api';
 import MovieCard from '@/components/MovieCard';
 import AboutSection from '@/components/AboutSection';
+import StaffSection from '@/components/StaffSection';
+import ConcessionsSection from '@/components/ConcessionsSection';
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -50,11 +52,14 @@ export default function Home() {
         )}
       </section>
 
-      {/* ABOUT */}
+      
       <AboutSection />
 
-      {/* Staff section — coming next */}
-      {/* Concessions section — coming next */}
+     
+      <StaffSection />
+
+      
+      <ConcessionsSection />
     </>
   );
 }

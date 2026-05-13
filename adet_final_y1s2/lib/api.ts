@@ -79,3 +79,46 @@ export const movieAPI = {
     }
   },
 };
+
+export interface StaffMember {
+  id: number;
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  displayOrder?: number;
+}
+
+export const staffAPI = {
+  async getAll(): Promise<StaffMember[]> {
+    try {
+      const res = await fetch(`${API_URL}/staff`);
+      if (!res.ok) throw new Error('Failed to fetch staff');
+      return res.json();
+    } catch (err) {
+      console.error('Error fetching staff:', err);
+      return [];
+    }
+  },
+};
+
+export interface ConcessionItem {
+  id: number;
+  category: string;
+  name: string;
+  price: number | string;
+  displayOrder?: number;
+}
+
+export const concessionsAPI = {
+  async getAll(): Promise<ConcessionItem[]> {
+    try {
+      const res = await fetch(`${API_URL}/concessions`);
+      if (!res.ok) throw new Error('Failed to fetch concessions');
+      return res.json();
+    } catch (err) {
+      console.error('Error fetching concessions:', err);
+      return [];
+    }
+  },
+};
