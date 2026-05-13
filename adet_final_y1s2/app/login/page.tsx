@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { login } from '@/lib/auth';
+import Logo from '@/components/Logo';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,13 +40,9 @@ export default function LoginPage() {
 
       {/* RIGHT — Login card */}
       <div className="w-full lg:w-1/3 flex flex-col items-center justify-center px-8 py-12 relative bg-white">
-        <Link
-          href="/"
-          className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#1a2a4a] flex items-center justify-center hover:bg-[#243660] transition"
-          aria-label="Back to home"
-        >
-          <span className="text-white text-xs font-light tracking-widest">MM</span>
-        </Link>
+        <div className="absolute top-6 right-6">
+  <Logo size={48} href="/" />
+        </div>
 
         <div className="w-full max-w-sm">
           <h2 className="text-2xl font-light text-[#1a2a4a] mb-10 text-center tracking-wide">
