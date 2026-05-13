@@ -4,7 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { login } from '@/lib/auth';
-import Logo from '@/components/Logo';
+import Logo from '@/components/logo';
 
 export default function LoginPage() {
   const router = useRouter();
