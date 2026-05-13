@@ -36,6 +36,6 @@ INSERT INTO movies (title, genre, rating, runtime, releaseDate, description, ima
  'The town of Crestwood has a tradition no one talks about.',
  '/assets/shadows-crestwood.jpg'),
 
-('Uncharted: Legacy of Thieves', 'Action', 'PG-13', '2h 10m', '2026-07-18',
+('Uncharted: Legacy of Kings', 'Action', 'PG-13', '2h 10m', '2026-07-18',
  'A reluctant treasure hunter is pulled back into the world he left behind when the map his father died protecting finally surfaces.',
  '/assets/uncharted.jpeg');
