@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Movie, movieAPI } from '@/lib/api';
 import MovieCard from '@/components/MovieCard';
+import AboutSection from '@/components/AboutSection';
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -10,45 +11,50 @@ export default function Home() {
 
   useEffect(() => {
     const loadMovies = async () => {
-      const data = await movieAPI.getAllMovies();
-      setMovies(data);
-      setLoading(false);
+      try {
+        const data = await movieAPI.getAllMovies();
+        setMovies(data);
+      } catch (err) {
+        console.error('Error fetching movies:', err);
+      } finally {
+        setLoading(false);
+      }
     };
     loadMovies();
   }, []);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-12">
-      <div className="mb-12">
-        <h1 className="text-5xl font-bold text-[#1a2a4a] mb-4">
-          Welcome to Moonlight Motion
-        </h1>
-        <p className="text-xl text-[#1a2a4a]">
-          Your favorite drive-in movie experience
-        </p>
-      </div>
+    <>
+      {/* SHOWINGS */}
+      <section className="max-w-7xl mx-auto px-6 pt-16">
+        <h2 className="text-2xl md:text-3xl font-light text-[#1a2a4a] tracking-[0.3em] text-center mb-12">
+          Showings
+        </h2>
 
-      {loading ? (
-        <div className="text-center py-20">
-          <p className="text-slate-500">Loading movies...</p>
-        </div>
-      ) : movies.length === 0 ? (
-        <div className="text-center py-20">
-          <p className="text-slate-500 text-xl">
+        {loading ? (
+          <p className="text-center text-slate-500 py-12">Loading movies...</p>
+        ) : movies.length === 0 ? (
+          <p className="text-center text-slate-500 py-12">
             No movies yet. Go to{' '}
             <a href="/admin" className="text-[#1a2a4a] font-medium hover:underline">
               Admin
             </a>{' '}
             to add some!
           </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-      )}
-    </main>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {movies.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* ABOUT */}
+      <AboutSection />
+
+      {/* Staff section — coming next */}
+      {/* Concessions section — coming next */}
+    </>
   );
 }
