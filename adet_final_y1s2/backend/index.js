@@ -7,6 +7,8 @@ require('./src/config/database');
 
 // Import routes
 const movieRoutes = require('./src/routes/movies');
+const authRoutes = require('./auth');
+
 // Create Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,8 +24,9 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/movies', movieRoutes);
+app.use('/auth', authRoutes);
 
-// 404 handler
+// 404 handler (must come AFTER all routes)
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
@@ -32,7 +35,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`🎬 Moonlight Motion API running on http://localhost:${PORT}`);
 });
-
-// Admin authentication route
-const authRoutes = require('./auth');
-app.use('/auth', authRoutes);

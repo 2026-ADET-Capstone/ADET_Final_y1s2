@@ -20,17 +20,27 @@ export default function Home() {
   return (
     <main className="max-w-7xl mx-auto px-4 py-12">
       <div className="mb-12">
-        <h1 className="text-5xl font-bold text-amber-400 mb-4">Welcome to Moonlight Motion</h1>
-        <p className="text-xl text-gray-300">Your favorite drive-in movie experience</p>
+        <h1 className="text-5xl font-bold text-[#1a2a4a] mb-4">
+          Welcome to Moonlight Motion
+        </h1>
+        <p className="text-xl text-[#1a2a4a]">
+          Your favorite drive-in movie experience
+        </p>
       </div>
 
       {loading ? (
         <div className="text-center py-20">
-          <p className="text-gray-400">Loading movies...</p>
+          <p className="text-slate-500">Loading movies...</p>
         </div>
       ) : movies.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-gray-400 text-xl">No movies yet. Go to <a href="/admin" className="text-amber-400 hover:underline">Admin</a> to add some!</p>
+          <p className="text-slate-500 text-xl">
+            No movies yet. Go to{' '}
+            <a href="/admin" className="text-[#1a2a4a] font-medium hover:underline">
+              Admin
+            </a>{' '}
+            to add some!
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
